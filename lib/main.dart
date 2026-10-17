@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -48,7 +49,7 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           const Text(
-            'Daily Devotional • Bible • Prayer • Hymns • Encouragement',
+            'Let the word of Christ dwell in you richly.',
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 32),
@@ -74,10 +75,61 @@ class HomePage extends StatelessWidget {
         ),
         trailing: const Icon(Icons.arrow_forward_ios, size: 16),
         onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('$title section coming next.')),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SectionPage(title: title),
+            ),
           );
         },
+      ),
+    );
+  }
+}
+
+class SectionPage extends StatelessWidget {
+  final String title;
+
+  const SectionPage({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(title)),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.menu_book_rounded,
+                size: 64,
+                color: Color(0xFF8A6A2F),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Welcome to SIGNS OF HIS GLORY.',
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Fullness of Joy',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
